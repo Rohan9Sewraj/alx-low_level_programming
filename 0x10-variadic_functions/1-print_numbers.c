@@ -1,29 +1,44 @@
-#include "variadic_functions.h"
-#include <stdio.h>
-#include <stdarg.h>
+/*****************************************************************************/
+/*                                                                           */
+/*                                               _____  ______    ____  ___  */
+/* 0-memset.c                                   /  _  \ |    |    \   \/  /  */
+/*                                             /  /_\  \|    |     \     /   */
+/* By: Barahmou   <hamabarhamou@gmail.com>    /    |    \    |___  /     \   */
+/*                                            \____|__  /_______ \/___/\  \  */
+/* Created: 2022-03-28 09:44:03   $Barahmou           \/        \/      \_/  */
+/* Updated: 2022-03-28 09:44:03 by Barahmou                                  */
+/*                                                                           */
+/*****************************************************************************/
+
+#include<stdio.h>
+#include<stdarg.h>
+#include<stdio.h>
+
 /**
- * print_numbers - prints numbers & new line at the end
- * @separator: string
- * @n: number of elements
- * Return: void
+ * print_numbers - a function ...
+ * @separator: the chaine
+ * @n: the number
+ * @...: the char
+ *
+ * Return: 1 or 0
  */
-void print_numbers(const char *separator, const unsigned int n, ...)
+void print_numbers(char *separator, const unsigned int n, ...)
 {
-va_list ap;
-unsigned int i;
+	va_list nums;
+	unsigned int index;
 
-va_start(ap, n);
+	va_start(nums, n);
 
-for (i = 0; i < n; i++)
-{
-printf("%d", va_arg(ap, int));
+	for (index = 0; index < n; index++)
+	{
+		printf("%d", va_arg(nums, int));
 
-if (separator != NULL && i != (n - 1))
-{
-printf("%s", separator);
-}
-}
-putchar('\n');
-va_end(ap);
+		if (index != (n - 1) && separator != NULL)
+			printf("%s", separator);
+	}
+
+	printf("\n");
+
+	va_end(nums);
 }
 
